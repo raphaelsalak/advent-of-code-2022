@@ -39,7 +39,6 @@ for instruction in instructions:
     to_list = int(instruction_list[5])
     #cut a list slice from the old one
     list_slice = stacks[from_list][-quantity:]
-    list_slice = list_slice[::-1]
     #append that list to the to list
     for i in list_slice:
         stacks[to_list].append(i)
@@ -48,6 +47,7 @@ for instruction in instructions:
     stacks[from_list] = stacks[from_list][:-quantity:]
 displayStacks()
 
-    
-    
+#Part 2
 
+    
+    
