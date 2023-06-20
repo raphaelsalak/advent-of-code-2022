@@ -41,9 +41,11 @@ for instruction in instructions:
     list_slice = stacks[from_list][-quantity:]
     list_slice = list_slice[::-1]
     #append that list to the to list
-    stacks[to_list].append(list_slice)
+    for i in list_slice:
+        stacks[to_list].append(i)
     #delete that old list
-    stacks[from_list] = stacks[from_list][-quantity:]
+    #stacks[from_list] = stacks[from_list][-quantity::-1]
+    stacks[from_list] = stacks[from_list][:-quantity:]
 displayStacks()
 
     
