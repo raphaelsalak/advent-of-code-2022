@@ -3,11 +3,11 @@ with open('input/input6.txt') as file:
 
 #parse the whole thing character by character
 print(contents)
-for i in range(4, len(contents)):
+for i in range(14, len(contents)):
     #given an iterable, will return a new non duplicate iterable, could change length of for ex. a list 
-    s = set(contents[(i-4):i])
+    s = set(contents[(i-14):i])
     print(s)
-    if len(s) == 4:
+    if len(s) == 14:
         print('total', i)
         break
     # , as you store them 
