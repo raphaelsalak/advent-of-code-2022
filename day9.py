@@ -1,33 +1,48 @@
-with open('input/day9.in') as file:
-    contents = [i.strip().split() for i in file.readlines()]
-print(contents)
-#keep a sum of the total steps
-total=0
-#keep track of opposites
-for i in range(0, len(contents)-1):
-    if contents[i][0] == 'L' and contents[i+1][0] == 'R':
-        total += abs(int(contents[i+1][1]) - int(contents[i][1]) + 1)
-    elif contents[i][0] == 'R' and contents[i+1][0] == 'L':
-        total += abs(int(contents[i+1][1]) - int(contents[i][1]) + 1)
-    elif contents[i][0] == 'U' and contents[i+1][0] == 'D':
-        total += abs(int(contents[i+1][1]) - int(contents[i][1]) + 1)
-    elif contents[i][0] == 'D' and contents[i+1][0] == 'U':
-        total += abs(int(contents[i+1][1]) - int(contents[i][1]) + 1)
-    else:
-        total += int(contents[i][1])
-last = contents[-1][0]
-before = contents[-2][0]
-if last == 'L' and before == 'R':
-    total += abs(int(contents[-1][1]) - int(contents[-2][1]) + 1)
-elif last == 'R' and before == 'L':
-    total += abs(int(contents[-1][1]) - int(contents[-2][1]) + 1)
-elif last == 'U' and before == 'D':
-    total += abs(int(contents[-1][1]) - int(contents[-2][1]) + 1)
-elif last == 'D' and before == 'U':
-    total += abs(int(contents[-1][1]) - int(contents[-2][1]) + 1)
-else:
-    total += int(contents[-1][1])
+with open("input/day9.in") as fin:
+    lines = fin.read().strip().split("\n")
 
-print('count', total)
+
+hx, hy = 0, 0
+tx, ty = 0, 0
+
+
+def touching(x1, y1, x2, y2):
+    return abs(x1 - x2) <= 1 and abs(y1 - y2) <= 1
+
+
+def move(dx, dy):
+    global hx, hy, tx, ty
+
+    hx += dx
+    hy += dy
+
+    if not touching(hx, hy, tx, ty):
+        sign_x = 0 if hx == tx else (hx - tx) / abs(hx - tx)
+        sign_y = 0 if hy == ty else (hy - ty) / abs(hy - ty)
+
+        tx += sign_x
+        ty += sign_y
+
+
+dd = {
+    "R": [1, 0],
+    "U": [0, 1],
+    "L": [-1, 0],
+    "D": [0, -1]
+}
+
+tail_visited = set()
+tail_visited.add((tx, ty))
+
+for line in lines:
+    op, amount = line.split(" ")
+    amount = int(amount)
+    dx, dy = dd[op]
+
+    for _ in range(amount):
+        move(dx, dy)
+        tail_visited.add((tx, ty))
+
+print(len(tail_visited))
 
 
