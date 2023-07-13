@@ -23,30 +23,40 @@ for i in blocks:
 #run a while loop to simulate 20 rounds
 new = 0
 value = ''
-inspect = []
+inspect = [0,0,0,0,0,0,0,0]
 
-for i, monkey in enumerate(blocks):
-    operation = monkey[2][0]
-    div = monkey[3]
-    first = monkey[4]
-    second = monkey[5]
-    for j in monkey[1]:
-        if len(monkey[i][1]) != 0:
-            if value == 'old':
-                value = j
-            else:
-                value = int(j)
-            if operation == '*':
-                new = j * value
-            elif operation == '+':
-                new = j + value
-            if new % div == 0:
-                #true
-                blocks[first][1].append(j)
-                blocks[i][1].remove(j)
-                #remove 
-            else:
-                #false
-                blocks[second][1].append(j)
-                blocks[i][1].remove(j)
+for _ in range(0,20):
+    for i, monkey in enumerate(blocks):
+        operation = monkey[2][0]
+        div = monkey[3]
+        first = monkey[4]
+        second = monkey[5]
+        for j in monkey[1]:
+            if len(monkey[1]) != 0:
+                inspect[i] += len(monkey[1]) 
+                if value == 'old':
+                    value = j
+                else:
+                    value = int(j)
+                if operation == '*':
+                    new = j * value
+                elif operation == '+':
+                    new = j + value
+                if new % div == 0:
+                    #true
+                    blocks[first][1].append(j)
+                    blocks[i][1].remove(j)
+                    #remove 
+                else:
+                    #false
+                    blocks[second][1].append(j)
+                    blocks[i][1].remove(j)
     #run through all the items for each monkey
+most = max(inspect)
+firstmost = most
+inspect.remove(most)
+most = max(inspect)
+secondmost = most
+print('the answer is ', firstmost * secondmost)
+
+
