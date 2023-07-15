@@ -10,4 +10,6 @@
 
 #at convergence it can equal going from botttom to top and or left to right and they're equal then it's fine to just state the steps for one of them.
 
+#djistras algo
+
 
