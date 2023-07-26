@@ -44,5 +44,6 @@ for line in lines:
         tail_visited.add((tx, ty))
 
 print(len(tail_visited))
+print(tail_visited)
 
 

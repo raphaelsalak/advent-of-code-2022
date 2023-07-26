@@ -24,36 +24,8 @@ def length(somestring):
     return maxcount
 with open('input/day13.in') as file:
     contents = file.read().strip().split('\n\n')
-#comparing int vs int, list vs list, int vs list, list vs int
-#need to somehow parse each line string and convert it to a list? or parse and solve using the string '[]' ?
-#how to convert string input to list
-a = []
-level = 0
-ignore = [']', ',', '[']
-for i in contents:
-    first, second = i.split('\n')
-    #maxlength = length(first)
-    for c in first:
-        if c == '[':
-            appendLevel(a, level, [])
-            level += 1
-        elif c not in ignore:
-                level -= 1
-                #read in comma to get the whole number e.g. 1 to 10.
-                num = int(c)
-                appendLevel(a, level, num)
-                #append num to the current level
-print(a)
-
-    #
-
-            
-                
-
-            
-
-
-
-        
-
-
+#comparing int vs int, list vs list, int vs list, list vs int #need to somehow parse each line string and convert it to a list? or parse and solve using the string '[]' ?
+#use eval
+#a = [b]
+#isinstance()
+#if the preprocessing is too hard, then there must be an easier built in way to do it e.g. eval an isintance() so if you think the processing is too hard start doing research or look at hints in the solution
