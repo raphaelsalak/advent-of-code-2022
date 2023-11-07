@@ -1,14 +1,24 @@
 with open('input/day16.in') as file:
     contents = file.read().strip().split('\n')
-print(contents)
 #the math is how ever long it's active in the 30 minutes * flow rate and then take the sum of all of them
 #extract the flow rate and nodes and their neigbors from input
+def dfs_recursive(graph, node, visited):
+    if node not in visited:
+        visited.append(node)
+        for neighbor in graph[node]:
+            dfs_recursive(graph, neighbor, visited)
+    return visited
+
+graph = {}
+
 for i in contents:
     line = i.split(' ')
     node = line[1]
-    rate = line[4]
+    rate = int(line[4][5:-1])
     neighbors = line[9:]
-    print(neighbors)
+    graph[node] = []
+print(graph)
+
 
     
 #dfs recursive with flow rate labled as 'rate' and accessed like that
